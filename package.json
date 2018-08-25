@@ -1,0 +1,49 @@
+{
+  "name": "api-nodejs-mongodb-jwt",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www",
+    "lint": "standard"
+  },
+  "main": "index.html",
+  "window": {
+    "kiosk": true
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.13.2",
+    "cheerio": "^0.22.0",
+    "connect-flash": "^0.1.1",
+    "connect-timeout": "^1.9.0",
+    "cookie-parser": "^1.4.3",
+    "crypto": "^1.0.1",
+    "debug": "^2.2.0",
+    "dotenv": "^6.0.0",
+    "ejs": "^2.3.4",
+    "express": "^4.13.4",
+    "express-flash": "^0.0.2",
+    "express-myconnection": "^1.0.4",
+    "express-session": "^1.15.0",
+    "express-validator": "^3.1.2",
+    "file-extension": "^3.1.2",
+    "formidable": "^1.1.1",
+    "i18n": "^0.8.3",
+    "i18n-express": "^1.1.2",
+    "jade": "^1.11.0",
+    "jquery": "^3.2.1",
+    "jwt-simple": "^0.5.1",
+    "karma": "^1.7.0",
+    "moment": "^2.22.2",
+    "mongoose": "^4.8.5",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "request": "^2.79.0",
+    "sendgrid": "^5.2.3",
+    "serve-favicon": "^2.3.0",
+    "socket.io": "^1.7.2",
+    "uuid": "^3.1.0"
+  }
+}

@@ -1,0 +1,42 @@
+<%- include layouts/header.ejs %>
+  <style media="screen">
+    body {
+      background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+      background-size: 400% 400%;
+      -webkit-animation: Gradient 15s ease infinite;
+      -moz-animation: Gradient 15s ease infinite;
+      animation: Gradient 15s ease infinite;
+    }
+  </style>
+
+
+  <div class="row">
+    <div class="container">
+      <h1 class="welcome">
+        <%=__("WELCOME_MSG")%>
+      </h1>
+      <p class="choose">Choose your language:</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container">
+      <div class="col-md-2 col-xs-4 col-md-offset-3 box">
+        <a href="/es">
+          <img src="/img/flags/es.svg" class="flags" />
+        </a>
+      </div>
+      <div class="col-md-2 col-xs-4 box">
+        <a href="/en">
+          <img src="/img/flags/en.svg" class="flags" />
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <%- include layouts/footer.ejs %>

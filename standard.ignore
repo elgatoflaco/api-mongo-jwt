@@ -1,0 +1,8 @@
+"standard": {
+  "ignore": [
+    "node_modules/",
+    "public/",
+    "package.json",
+    "standard.ignore"
+  ]
+}

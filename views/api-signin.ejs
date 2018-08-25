@@ -1,0 +1,33 @@
+<form id="login" method="POST">
+  <p>
+    <input type="email" id="email" name="email" placeholder="Tu email" />
+  </p>
+  <p>
+    <input type="password" id="password" name="password" placeholder="Tu contraseña" />
+  </p>
+  <p>
+    <input type="submit" value="Login" />
+  </p>
+</form>
+
+<script>
+  'use strict'
+  const formLogin = document.getElementById('login')
+  formLogin.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch('/api/signin', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value
+      }),
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin'
+    })
+    .then(res => res.json())
+    .then(data => {
+      localStorage.setItem('token', data.token)
+      console.log(data)
+    })
+  })
+</script>

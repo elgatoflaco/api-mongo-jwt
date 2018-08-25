@@ -1,0 +1,13 @@
+<%- include layouts/header.ejs %>
+<div class="wrap">
+
+  <% for(var i=1; i<6; i++) { %>
+    <a class='button' href='/pasar/<%= [i] %>'>
+      Mostrador <%= [i] %>
+    </a>
+  <% } %>
+
+</div>
+
+
+<%- include layouts/footer.ejs %>

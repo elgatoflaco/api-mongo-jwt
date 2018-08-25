@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mi API Node.js</title>
+  </head>
+  <body>
+
+  </body>
+</html>
+
+<script type="text/javascript">
+  let roomList = document.createElement('ul')
+  const myHeaders = new Headers();
+  myHeaders.append('authorization', `Bearer ${localStorage.token}`)
+  // myHeaders.append('authorization', `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1OTg5ZGE2N2U5OWM5YjA3ODBjODNkODEiLCJpYXQiOjE1MDIyMjA5NzYsImV4cCI6MTUwMzQzMDU3Nn0.ZKrVShassZO1RLXzQZhEBPq4ibW5V7H0914ArPSlpSs`)
+  fetch('/api/rooms', {
+    method: 'GET',
+    headers: myHeaders
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log(data);
+    data.rooms.map(room => {
+      let text = document.createTextNode(room.name)
+      let elem = document.createElement('li')
+      elem.appendChild(text)
+      roomList.appendChild(elem)
+    })
+    document.body.appendChild(roomList)
+  })
+</script>
