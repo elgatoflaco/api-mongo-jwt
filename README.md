@@ -28,7 +28,8 @@ METHOD | ENDPOINT | USAGE
 --- | --- | ---
 POST | `/users/signup` | jwt sign up
 POST | `/users/authenticate` | jwt sign in
-
+POST | `/users/forgot-password` | Forgot password
+POST | `/users/reset-password` | Reset password
 
 
 ## LINKS

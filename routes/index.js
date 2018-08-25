@@ -35,6 +35,7 @@ module.exports = function (passport) {
   router.post('/users/authenticate', userCtrl.signIn)
   router.get('/users', auth, userCtrl.getUsers)
   router.post('/users/forgot-password', userCtrl.forgotPassword)
+  router.post('/users/reset-password', userCtrl.resetPassword)
 
 
   router.get('/api/private', auth, (req, res) => {
