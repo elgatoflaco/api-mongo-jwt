@@ -8,7 +8,7 @@ const mailSender = require('../extra/mail-sender')
 const config = require('../config')
 var bCrypt = require('bcrypt-nodejs')
 const crypto = require('crypto')
-
+const FormUtils = require('../helpers/form-utils')
 function signUp (req, res) {
 
   var user = new User();
@@ -107,10 +107,10 @@ function resetPassword (req, res) {
   const code = String(req.body.code);
   if (!code) return res.status(500).send({ message: 'User not found or probably you used email that is used for google authentification' });
 
-  // const error = FormUtils.checkPasswordStrength(req.body.password);
-  // if (error) {
-  //   return doRender(req, res, "password-reset.ejs", { message: error });
-  // }
+  const error = FormUtils.checkPasswordStrength(req.body.password);
+  if (error) {
+    return res.status(500).send({ message: error });
+  }
 
   User.findOne({ "resetCode": code }).exec()
   .then(user => {
