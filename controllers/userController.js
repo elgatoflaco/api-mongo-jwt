@@ -39,7 +39,7 @@ function signUp (req, res) {
 function signIn (req, res) {
   User.findOne({ email: req.body.username }, (err, user) => {
     if (err) return res.status(500).send({ message: err })
-    if (!user) return res.status(404).send({message: 'User not found!'})
+    if (!user) return res.status(204).send({message: 'User not found!'})
 
     user.comparePassword(req.body.password, (error, isMatch) => {
       console.log(error)
@@ -56,7 +56,7 @@ function signIn (req, res) {
 function getUser(req, res) {
   User.findOne({ _id: req.params._id }, (err, user) => {
     if (err) return res.status(500).send({ message: err });
-    if (!user) return res.status(404).send({ message: "User not found!" });
+    if (!user) return res.status(204).send({ message: "User not found!" });
     return res
     .status(200)
     .send({
@@ -69,7 +69,7 @@ function getUser(req, res) {
 function getUsers(req, res) {
   User.find({}, (err, users) => {
     if (err) return res.status(500).send({ message: err });
-    if (!users) return res.status(404).send({ message: "Users not found!" });
+    if (!users) return res.status(204).send({ message: "Users not found!" });
     return res
     .status(200)
     .send({
@@ -85,7 +85,7 @@ function forgotPassword(req, res) {
   User.findOne({ "email": email }).exec()
   .then(user => {
 
-    if (user == null) return res.status(404).send({ message: "User not found or probably you used email that is used for google authentification: " + email });
+    if (user == null) return res.status(204).send({ message: "User not found or probably you used email that is used for google authentification: " + email });
     user.resetExpiryTime = Date.now() + config.passwordResetLinkTimeout;
     user.resetCode = "MUSIC" + crypto.randomBytes(11).toString('hex');
     return user.save()
@@ -105,18 +105,18 @@ function forgotPassword(req, res) {
 
 function resetPassword (req, res) {
   const code = String(req.body.code);
-  if (!code) return res.status(500).send({ message: 'User not found or probably you used email that is used for google authentification' });
+  if (!code) return res.status(204).send({ message: 'User not found or probably you used email that is used for google authentification' });
 
   const error = FormUtils.checkPasswordStrength(req.body.password);
   if (error) {
-    return res.status(500).send({ message: error });
+    return res.status(409).send({ message: error });
   }
 
   User.findOne({ "resetCode": code }).exec()
   .then(user => {
     // code does not exist or is expired, just go to the login page
     if (!user || !user.email || !user.resetExpiryTime)
-    return res.status(500).send({ message: 'The password reset link has expired' });
+    return res.status(401).send({ message: 'The password reset link has expired' });
 
 
 
@@ -124,7 +124,7 @@ function resetPassword (req, res) {
     const expiry = new Date(user.resetExpiryTime).getTime();
     console.log(expiry);
     if (Date.now() > expiry)
-    return res.status(500).send({ message: 'The password reset link has expired' });
+    return res.status(401).send({ message: 'The password reset link has expired' });
 
     user.password = req.body.password;
     user.resetCode = null;

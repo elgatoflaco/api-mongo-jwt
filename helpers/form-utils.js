@@ -11,7 +11,6 @@ function checkPasswordStrength(pwd) {
   });
 
   var result = owasp.test(pwd);
-  console.log('aquí y ahora')
   return pwd && result.errors.length == 0 ? null : result.errors;
 }
 
